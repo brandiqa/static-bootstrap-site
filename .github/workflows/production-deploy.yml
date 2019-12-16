@@ -1,0 +1,21 @@
+name: Deploy to Production
+on:
+   push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy to Zeit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Deploy to Zeit
+        uses: amondnet/now-deployment@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          zeit-token: ${{ secrets.ZEIT_TOKEN }}
+          now-args: '--prod'
