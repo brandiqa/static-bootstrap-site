@@ -1,4 +1,4 @@
-name: Stage Deploy Website
+name: Deploy to Stage & Load Test
 on:
    pull_request:
     branches:
@@ -22,6 +22,7 @@ jobs:
 
   k6_cloud_test:
     name: k6 cloud test run
+    needs: deploy
     runs-on: ubuntu-latest
     container: docker://loadimpact/k6:latest
   
